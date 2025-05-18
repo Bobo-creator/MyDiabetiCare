@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login – MyDiabetiCare</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script>
+    window.Clerk = window.Clerk || {};
+    window.Clerk.publishableKey = "YOUR_CLERK_PUBLISHABLE_KEY"; // Replace this
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@4/dist/clerk.browser.js"></script>
+</head>
+<body>
+  <div id="wrapper" class="fade-in">
+    <header id="header">
+      <a href="index.html" class="logo">MyDiabetiCare</a>
+    </header>
+
+    <section class="post featured">
+      <header class="major">
+        <h2>Login or Sign Up</h2>
+        <p>Secure access to your personalized diabetes care experience.</p>
+      </header>
+      <div id="sign-in" style="max-width: 400px; margin: auto;"></div>
+    </section>
+
+    <footer id="footer">
+      <p>&copy; MyDiabetiCare</p>
+    </footer>
+  </div>
+
+  <script>
+    window.addEventListener("load", async () => {
+      await Clerk.load();
+      Clerk.mountSignIn("#sign-in", {
+        afterSignInUrl: "index.html",
+        afterSignUpUrl: "index.html"
+      });
+    });
+  </script>
+</body>
+</html>
