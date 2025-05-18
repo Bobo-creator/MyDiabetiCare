@@ -4,40 +4,79 @@
   <title>Login – MyDiabetiCare</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="assets/css/main.css">
-  <script>
-    window.Clerk = window.Clerk || {};
-    window.Clerk.publishableKey = "YOUR_CLERK_PUBLISHABLE_KEY"; // Replace this
-  </script>
-  <script async src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@4/dist/clerk.browser.js"></script>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      background: url('images/bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      /* background-color: #f8f9fa; */
+    }
+    .login-box {
+      width: 90%;
+      max-width: 400px;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .login-box h2 {
+      text-align: center;
+    }
+    .login-box input {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #47b2e4;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .login-box button:hover {
+      background: #349dcf;
+    }
+  </style>
 </head>
 <body>
-  <div id="wrapper" class="fade-in">
-    <header id="header">
-      <a href="index.html" class="logo">MyDiabetiCare</a>
-    </header>
 
-    <section class="post featured">
-      <header class="major">
-        <h2>Login or Sign Up</h2>
-        <p>Secure access to your personalized diabetes care experience.</p>
-      </header>
-      <div id="sign-in" style="max-width: 400px; margin: auto;"></div>
-    </section>
-
-    <footer id="footer">
-      <p>&copy; MyDiabetiCare</p>
-    </footer>
+  <div class="login-box">
+    <h2>Login to MyDiabetiCare</h2>
+    <form onsubmit="return login(event)">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
   </div>
 
   <script>
-    window.addEventListener("load", async () => {
-      await Clerk.load();
-      Clerk.mountSignIn("#sign-in", {
-        afterSignInUrl: "index.html",
-        afterSignUpUrl: "index.html"
-      });
-    });
+    function login(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Replace with your own dummy values
+      const demoEmail = "demo@mydiabeticare.com";
+      const demoPass = "demo123";
+
+      if (email === demoEmail && password === demoPass) {
+        alert("Login successful!");
+        window.location.href = "index.html";
+      } else {
+        alert("Invalid email or password.");
+      }
+    }
   </script>
+
 </body>
 </html>
