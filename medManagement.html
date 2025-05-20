@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medication Management | MyDiabetiCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f9ff;
+      color: #333;
+    }
+    header {
+      background-color: #215c84;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    h2 {
+      color: #215c84;
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 1rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    button {
+      background-color: #215c84;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Medication Management</h1>
+    <p>Stay on top of your medications with smart reminders and education tools</p>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>Set a Medication Reminder</h2>
+      <label for="med-name">Medication Name</label>
+      <select id="med-name">
+        <option>Insulin</option>
+        <option>Ozempic</option>
+        <option>Metformin</option>
+        <option>Other</option>
+      </select>
+
+      <label for="dosage">Dosage</label>
+      <input type="text" id="dosage" placeholder="e.g. 10 units, 500mg">
+
+      <label for="frequency">How Often?</label>
+      <select id="frequency">
+        <option>Once daily</option>
+        <option>Twice daily</option>
+        <option>Before each meal</option>
+        <option>Weekly</option>
+      </select>
+
+      <label for="time">Time of Day</label>
+      <input type="time" id="time">
+
+      <button onclick="addReminder()">Add Reminder</button>
+    </div>
+
+    <div class="card">
+      <h2>Set a Refill Reminder</h2>
+      <label for="refill-med">Medication Name</label>
+      <input type="text" id="refill-med" placeholder="e.g. Metformin">
+
+      <label for="refill-date">Next Refill Date</label>
+      <input type="date" id="refill-date">
+
+      <button onclick="addRefillReminder()">Add Refill Reminder</button>
+    </div>
+
+    <div class="card">
+      <h2>Medication Education</h2>
+      <p><strong>Insulin:</strong> A hormone that helps regulate blood sugar by allowing glucose to enter cells. It's essential for people with Type 1 and advanced Type 2 diabetes.</p>
+      <p><strong>Ozempic (Semaglutide):</strong> A GLP-1 receptor agonist that helps lower blood sugar by enhancing insulin secretion and reducing appetite. Also helps with weight management.</p>
+      <p><strong>Metformin:</strong> First-line oral medication for Type 2 diabetes. It improves insulin sensitivity and lowers liver glucose production. Most effective when paired with healthy diet and exercise.</p>
+    </div>
+
+    <div class="card">
+      <h2>Your Active Reminders</h2>
+      <div id="reminder-list"></div>
+    </div>
+  </div>
+
+  <script>
+    function addReminder() {
+      const med = document.getElementById('med-name').value;
+      const dose = document.getElementById('dosage').value;
+      const freq = document.getElementById('frequency').value;
+      const time = document.getElementById('time').value;
+
+      const entry = `<p><strong>${med}</strong> - ${dose}, ${freq} at ${time}</p>`;
+      document.getElementById('reminder-list').innerHTML += entry;
+    }
+
+    function addRefillReminder() {
+      const med = document.getElementById('refill-med').value;
+      const date = document.getElementById('refill-date').value;
+
+      const entry = `<p><strong>Refill:</strong> ${med} on ${date}</p>`;
+      document.getElementById('reminder-list').innerHTML += entry;
+    }
+  </script>
+</body>
+</html>
